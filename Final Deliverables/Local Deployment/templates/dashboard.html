@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Dashboard - CKD Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='logo.png') }}">
+</head>
+
+<body class=" border-0">
+
+    <!-- Example Code -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bottom-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{{ url_for('static',filename='logo.png') }}" alt="Logo"
+                    width="40" class="d-inline-block align-text-top">
+            </a>
+            <a class="navbar-brand" href="#">
+                CKD Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active">Hi! {{session.username}} 👍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('result')}}">Result</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="w-75 mx-auto bg-white px-5 py-4">
+        <form method="post" action="">
+            <h2 class="text-center">Chronic Kidney Disease Prediction</h2><br>
+
+            <h4>Provide your test details below 👇:</h4><br>
+
+            <div class="form-outline mb-2 mx-auto w-25">
+                <input type="datetime-local" id="timestamp" name="timestamp" class="form-control"
+                    placeholder="timestamp" required /><br>
+            </div>
+            <div class="form-outline">
+                <input type="hidden" id="username" name="username" class="form-control" value="{{session.username}}"
+                    required /><br>
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="age" class="form-control" placeholder="Age" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="bp" class="form-control" placeholder="Blood Pressure" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="sg" class="form-control" placeholder="Specific Gravity" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="al" class="form-control" placeholder="Albumin" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="su" class="form-control" placeholder="sugar" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="rbc" class="form-control" placeholder="red blood cells" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="pc" class="form-control" placeholder="pus cells" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="pcc" class="form-control" placeholder="pus cell clumps" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="ba" class="form-control" placeholder="bacteria" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="bgr" class="form-control" placeholder="blood glucose random" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="bu" class="form-control" placeholder="blood urea" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="sc" class="form-control" placeholder="serum creatinine" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="sod" class="form-control" placeholder="sodium" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="pot" class="form-control" placeholder="potassium" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="hemo" class="form-control" placeholder="hemoglobin" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="pcv" class="form-control" placeholder="packet cell volume" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="wc" class="form-control" placeholder="white blood cell count" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="rc" class="form-control" placeholder="red blood cell count" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="htn" class="form-control" placeholder="hypertension" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="dm" class="form-control" placeholder="diabetes mellitus" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="cad" class="form-control" placeholder="coronary artery disease" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="appet" class="form-control" placeholder="appetite" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="pe" class="form-control" placeholder="pedal edema" required />
+            </div>
+            <div class="form-outline mb-4 col-6 details">
+                <input name="ane" class="form-control" placeholder="anemia" required />
+            </div>
+
+
+            <!-- Submit button -->
+            <div class="text-center"><button type="submit" class="btn btn-primary btn-block mb-4 ">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <footer class="footer">CKD<sup class="footerc">©</sup> Predictor with ❤️</footer>
+</body>
+
+</html>
