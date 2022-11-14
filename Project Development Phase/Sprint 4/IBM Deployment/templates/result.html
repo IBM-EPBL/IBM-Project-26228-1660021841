@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <title>Test Results - CKD Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='styles.css') }}"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static',filename='logo.png') }}"
+    />
+  </head>
+
+  <body class="border-0">
+    <!-- Example Code -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bottom-0">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img
+            src="{{ url_for('static',filename='logo.png') }}"
+            alt="Logo"
+            width="40"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <a class="navbar-brand" href="#"> CKD Predictor</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active">Hi! {{session.username}} 👍</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="logout" href="{{url_for('logout')}}"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="mx-auto bg-white mt-5 px-1 py-4 text-center">
+      <h3>
+        Your Test Result is: {% if predict == 1 %}
+        <span style="color: red">Positive</span>
+        {% elif predict == 0 %}
+        <span style="color: green">Negative</span>
+        {% else%}
+        <span>Not Available Now!</span>
+        {% endif %}
+      </h3>
+      <br />
+      <h4>Your Past Test Results</h4>
+      {% if table.size == 0 %}
+      <h1>No Records found</h1>
+      {% else %}
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Age</th>
+          <th>BP</th>
+          <th>SG</th>
+          <th>AL</th>
+          <th>SU</th>
+          <th>RBC</th>
+          <th>PC</th>
+          <th>PCC</th>
+          <th>BA</th>
+          <th>BGR</th>
+          <th>BU</th>
+          <th>SC</th>
+          <th>SOD</th>
+          <th>POT</th>
+          <th>HEMO</th>
+          <th>PCV</th>
+          <th>WC</th>
+          <th>RC</th>
+          <th>HTN</th>
+          <th>DM</th>
+          <th>CAD</th>
+          <th>APPET</th>
+          <th>PE</th>
+          <th>ANE</th>
+          <th>Result</th>
+        </tr>
+        {%- for row in table %}
+        <tr>
+          <td>{{row.timestamp}}</td>
+          <td>{{row.age}}</td>
+          <td>{{row.bp}}</td>
+          <td>{{row.sg}}</td>
+          <td>{{row.al}}</td>
+          <td>{{row.su}}</td>
+          <td>{{row.rbc}}</td>
+          <td>{{row.pc}}</td>
+          <td>{{row.pcc}}</td>
+          <td>{{row.ba}}</td>
+          <td>{{row.bgr}}</td>
+          <td>{{row.bu}}</td>
+          <td>{{row.sc}}</td>
+          <td>{{row.sod}}</td>
+          <td>{{row.pot}}</td>
+          <td>{{row.hemo}}</td>
+          <td>{{row.pcv}}</td>
+          <td>{{row.wc}}</td>
+          <td>{{row.rc}}</td>
+          <td>{{row.htn}}</td>
+          <td>{{row.dm}}</td>
+          <td>{{row.cad}}</td>
+          <td>{{row.appet}}</td>
+          <td>{{row.pe}}</td>
+          <td>{{row.ane}}</td>
+          <td class="resultcol">
+            <b>
+              {% if row.result=='Positive' %}
+              <span style="color: red">Positive</span>
+              {% else %}
+              <span style="color: green">Negative</span>
+              {% endif%}
+            </b>
+          </td>
+        </tr>
+        {% endfor -%}
+      </table>
+      {% endif %}
+    </div>
+
+    <footer class="footer">
+      CKD<sup class="footerc">©</sup> Predictor with ❤️
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>CKD Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='logo.png') }}">
+</head>
+
+<body class=" border-0">
+
+    <!-- Example Code -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bottom-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{{ url_for('static',filename='logo.png') }}" alt="Logo"
+                    width="40" class="d-inline-block align-text-top">
+            </a>
+            <a class="navbar-brand" href="#">
+                CKD Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('register')}}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="w-50 mx-auto mt-5 bg-white px-5 py-4">
+        <form method="post" action="">
+            <h2 class="text-center">Login</h2><br>
+
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+                <input type="username" id="username" name="username" class="form-control" required />
+                <label class="form-label" for="username">Username</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control" required />
+                <label class="form-label" for="password">Password</label>
+                <div>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <p class="flash">
+                        {% for category, message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="text-center"><button type="submit" class="btn btn-primary btn-block mb-2 ">Sign in</button>
+            </div>
+            <div class="text-center mt-3">Not yet registered? <a href="{{url_for('register')}}">Register</a></div>
+        </form>
+    </div>
+
+    <footer class="footer">CKD<sup class="footerc">©</sup> Predictor with ❤️</footer>
+</body>
+
+</html>

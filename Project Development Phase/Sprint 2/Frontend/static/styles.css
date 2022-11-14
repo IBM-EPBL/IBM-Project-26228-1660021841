@@ -1,0 +1,55 @@
+body {
+    background-color: #F3F2EF;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #0D6EFD;
+  color: white;
+  text-align: center;
+}
+.footerc {
+    font-size:small;
+}
+
+.flash {
+  color: red;
+  font-weight: bold; 
+}
+
+.details {
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+::-webkit-input-placeholder {
+   text-transform: capitalize;
+}
+
+:-moz-placeholder { 
+   text-transform: capitalize;
+}
+
+::-moz-placeholder {  
+   text-transform: capitalize;
+}
+
+:-ms-input-placeholder { 
+   text-transform: capitalize;
+}
+
+table, th, td {
+  border: 1px solid;
+  padding-left: 3px;
+  padding-right: 3px;
+  white-space: nowrap;
+  font-size: small;
+}
+
+table {
+   width: 100%;
+}
